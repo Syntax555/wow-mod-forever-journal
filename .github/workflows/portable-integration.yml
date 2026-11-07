@@ -1,0 +1,28 @@
+name: Portable integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      portable-ref:
+        description: Assembly branch, tag or commit with the fixtures to check against
+        default: main
+
+permissions:
+  contents: read
+
+concurrency:
+  # A newer push or pull request update replaces a running check. A manual run
+  # gets its own queue, so neither cancels the other.
+  group: portable-integration-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' }}
+
+jobs:
+  integration:
+    # The assembly's shared workflow checks this commit with the module's fixtures.
+    uses: Syntax555/mod-playerbots-portable/.github/workflows/module-integration.yml@main
+    with:
+      module: mod-forever-journal
+      portable-ref: ${{ inputs.portable-ref || 'main' }}
