@@ -35,6 +35,33 @@ This module used to be **mod-forever-dungeon-journal** with the **DungeonJournal
 Directory replaces [mod-npc-finder](https://github.com/buildthehomelab/wow-mod-npc-finder); see
 [Upgrading from mod-npc-finder](#upgrading-from-mod-npc-finder).
 
+## mod-playerbots-portable fork
+
+This fork is maintained for
+[Playerbots Portable](https://github.com/Syntax555/mod-playerbots-portable) on its `main`
+branch. The server ZIP builds the module as `mod-forever-journal`, applies its SQL and ships
+`configs/modules/mod_forever_journal.conf.dist`. Install the matching addon on the client:
+
+1. Download [Journal-latest.zip](https://github.com/Syntax555/wow-mod-forever-journal/releases/latest/download/Journal-latest.zip)
+   from this fork's [Latest release](https://github.com/Syntax555/wow-mod-forever-journal/releases/latest).
+2. Close WoW completely. Extract it into `Interface/AddOns/`, so that
+   `Interface/AddOns/Journal/Journal.toc` exists. Replace an older `Journal/` folder; your
+   settings in `WTF/` are kept.
+3. Optionally add the [Progression tab](https://github.com/Syntax555/journalprogression#installation)
+   for each character's Individual Progression stage.
+
+On this server:
+
+- Era locks follow each character's own Individual Progression stage. The Journal only shows
+  what the realm reports; it does not grant items, travel, stages or access.
+- The managed profile sets `Journal.Directory.LearnSpell = 0`. The server's required EraTalents
+  client patch replaces `Spell.dbc` without the Town Guide spell, which would otherwise appear
+  blank in the spellbook. `/directory` and `.find` open the Directory.
+- Reference loot counts group by the expression they select, so MySQL 8's default
+  `ONLY_FULL_GROUP_BY` mode accepts the query, and boss models use a `DressUpModel` so humanoid
+  bosses are drawn with their textures. Both fixes come from
+  [EvilTactician's fork](https://github.com/EvilTactician/wow-mod-forever-journal).
+
 ## Patch Notes: Journal
 
 Category: Interface
