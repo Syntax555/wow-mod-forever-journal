@@ -1911,7 +1911,7 @@ namespace Journal::Collections
                     return Acore::StringFormat("V,{},{},{},{},{},{},{},{},{},{},{}", i, s.id, s.a, s.b, s.c, s.items.empty() ? "-" : s.items,
                         s.reqState, placed, Escape(s.name, 40), Escape(s.where, 40), Escape(s.extra, 30));
                 case 'D':
-                    return Acore::StringFormat("D,{},{},{},{},{},{},{},{},{},{},{},{}", i, s.id, s.a, s.b, s.c, s.reqState, placed, s.d,
+                    return Acore::StringFormat("D,{},{},{},{},{},{},{},{},{},{},{},{},{}", i, s.id, s.a, s.b, s.c, s.reqState, placed, s.d,
                         Escape(s.name, 40), Escape(s.where, 40), s.variant, Escape(s.extra, 40), BaseOf(s.id));
                 case 'G':
                     return Acore::StringFormat("G,{},{},{},{},{},{},{},{},{},{},{}", i, s.id, s.a, s.b, s.c, s.reqState, placed,
