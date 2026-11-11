@@ -348,7 +348,7 @@ namespace Journal::Loot
                 uint32 flags = RowFlags(row, condSource, lootId);
                 if (row.reference)
                 {
-                    float p = row.chance >= 100.0f ? 1.0f : row.chance * refRate / 100.0f;
+                    float p = row.chance >= 100.0f ? 1.0f : std::min(1.0f, row.chance * refRate / 100.0f);
                     AddReference(out, row, p, depth, flags & LOOT_HARD_MODE, hardMode);
                 }
                 else
